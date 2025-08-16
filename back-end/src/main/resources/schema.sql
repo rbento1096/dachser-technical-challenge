@@ -1,0 +1,11 @@
+CREATE TABLE income (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    shipment_id BIGINT NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE cost (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    shipment_id BIGINT NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL
+);
