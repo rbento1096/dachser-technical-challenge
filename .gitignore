@@ -1,29 +1,63 @@
+# Logs and temp
 *~
 *.sw[mnpcod]
 *.log
 *.tmp
 *.tmp.*
 log.txt
-*.sublime-project
-*.sublime-workspace
 npm-debug.log*
 
+# Angular / Front-end
 .sass-cache/
 .tmp/
 .versions/
 coverage/
 dist/
 node_modules/
-tmp/
+.angular/
+.env
 temp/
-hooks/
-platforms/
-plugins/
-plugins/android.json
-plugins/ios.json
 www/
-$RECYCLE.BIN/
 
+# OS
+$RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+# Java / Spring Boot
+target/
+out/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Editors / IDEs
+# VS Code
+.vscode/
+.history/
+
+# IntelliJ IDEA (or other JetBrains IDEs - such as WebStorm)
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# STS / Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
