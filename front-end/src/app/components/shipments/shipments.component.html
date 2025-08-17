@@ -1,0 +1,30 @@
+<div>
+  <h2>Shipments</h2>
+  <button mat-raised-button color="primary" (click)="addShipment()">
+    Add Shipment
+  </button>
+
+  <table mat-table [dataSource]="shipments" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let shipment">{{ shipment.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let shipment">
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteShipment(shipment.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+        <app-calculations [shipmentId]="shipment.id"></app-calculations>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
