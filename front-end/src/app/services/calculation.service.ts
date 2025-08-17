@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Calculation } from '../models/calculation.model';
+
 import { Observable } from 'rxjs';
+
+import { Calculation } from '../models/calculation.model';
 
 @Injectable({ providedIn: 'root' })
 export class CalculationService {
