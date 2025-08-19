@@ -1,6 +1,7 @@
 package com.example.profitcalculator.service;
 
 import com.example.profitcalculator.entity.Shipment;
+import com.example.profitcalculator.exception.ResourceNotFoundException;
 import com.example.profitcalculator.repository.ShipmentRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class ShipmentService {
 
     public Shipment getById(Long id) {
         return shipmentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Shipment not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Shipment", "id", id));
     }
 
     public Shipment create(Shipment shipment) {
@@ -28,6 +29,10 @@ public class ShipmentService {
     }
 
     public void delete(Long id) {
+        // Check if shipment exists before deleting
+        if (!shipmentRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Shipment", "id", id);
+        }
         shipmentRepository.deleteById(id); // cascade deletes calculations
     }
 }
