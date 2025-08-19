@@ -15,6 +15,10 @@ import { NotificationService } from '../../services/notification.service';
 
 import { Shipment } from '../../models/shipment.model';
 
+/**
+ * Component responsible for displaying the list of shipments
+ * Provides functionality to view shipments and navigate to details
+ */
 @Component({
   selector: 'app-shipments-list',
   standalone: true,
@@ -158,6 +162,9 @@ export class ShipmentsListComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  /**
+   * Loads all shipments from the service
+   */
   loadShipments(): void {
     this.isLoading = true;
     this.shipmentService
@@ -177,6 +184,9 @@ export class ShipmentsListComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Creates a new shipment
+   */
   addShipment(): void {
     this.isLoading = true;
     this.shipmentService
@@ -196,6 +206,10 @@ export class ShipmentsListComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Navigates to the detail view of a shipment
+   * @param id - The ID of the shipment to view
+   */
   openShipmentDetail(id: number): void {
     const validation = this.validationService.validateShipmentId(id);
     if (!validation.isValid) {

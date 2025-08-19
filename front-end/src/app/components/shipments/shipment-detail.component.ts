@@ -23,6 +23,11 @@ import { NotificationService } from '../../services/notification.service';
 
 import { Calculation } from '../../models/calculation.model';
 
+
+/**
+ * Component responsible for displaying shipment details and managing calculations
+ * Provides functionality to add, view, filter, and delete calculations
+ */
 @Component({
   selector: 'app-shipment-detail',
   standalone: true,
@@ -309,6 +314,7 @@ export class ShipmentDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.shipmentId = Number(this.route.snapshot.paramMap.get('id'));
 
+    // Validate shipment ID
     const validation = this._validation.validateShipmentId(this.shipmentId);
     if (!validation.isValid) {
       this._notification.showError(
@@ -332,6 +338,9 @@ export class ShipmentDetailComponent implements OnInit, OnDestroy {
     this.dataSource.sort = this.sort;
   }
 
+  /**
+   * Loads calculations for the current shipment
+   */
   loadCalculations(): void {
     this.isLoading = true;
     this._calculations
@@ -352,6 +361,10 @@ export class ShipmentDetailComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Applies filter to the table data
+   * @param event - The input event containing the filter value
+   */
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -361,6 +374,9 @@ export class ShipmentDetailComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Sets up the filter predicate for the table
+   */
   setDataFilterPredicate(): void {
     this.dataSource.filterPredicate = (data: Calculation, filter: string) => {
       const filterText = filter.trim().toLowerCase();
@@ -368,6 +384,10 @@ export class ShipmentDetailComponent implements OnInit, OnDestroy {
     };
   }
 
+  /**
+   * Validates the form inputs
+   * @returns True if the form is valid, false otherwise
+   */
   isFormValid(): boolean {
     const validation = this._validation.validateCalculation(
       this.income,
@@ -388,6 +408,9 @@ export class ShipmentDetailComponent implements OnInit, OnDestroy {
     return validation.isValid;
   }
 
+  /**
+   * Adds a new calculation
+   */
   addCalculation(): void {
     if (!this.isFormValid()) {
       this._notification.showWarning(
@@ -417,6 +440,10 @@ export class ShipmentDetailComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Deletes a calculation
+   * @param id - The ID of the calculation to delete
+   */
   deleteCalculation(id: number): void {
     const validation = this._validation.validateCalculationId(id);
     if (!validation.isValid) {
