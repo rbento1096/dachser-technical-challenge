@@ -15,6 +15,9 @@ export class ValidationService {
   validateCalculation(income: number, cost: number): ValidationResult {
     const errors: string[] = [];
 
+    if (typeof income !== 'number') errors.push('Income must be a number');
+    if (typeof cost !== 'number') errors.push('Cost must be a number');
+
     // Check for negative values
     if (income < 0) errors.push('Income cannot be negative');
     if (cost < 0) errors.push('Cost cannot be negative');
